@@ -47,3 +47,14 @@ export const verification = pgTable("verification", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().$onUpdate(() => new Date()).notNull(),
 });
+
+export const news = pgTable("news", {
+  id: integer("id").primaryKey(),
+  title: text("title").notNull(),
+  content: text("content").notNull(),
+  image: text("image"),
+  // type: text("type").default("news").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().$onUpdate(() => new Date()).notNull(),
+  authorId: text("author_id").notNull().references(() => user.id, { onDelete: "cascade" }),
+});
