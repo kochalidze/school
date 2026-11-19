@@ -22,8 +22,9 @@ export async function requireAuth(req, res, next) {
 
 // ამოწმებს, არის თუ არა ადმინი (სიახლეების დამატება/წაშლისთვის გამოგადგება)
 export function requireAdmin(req, res, next) {
-  if (!req.user || req.user.role !== "admin") {
-    return res.status(403).json({ error: "წვდომა აკრძალულია: საჭიროა ადმინის უფლება" });
+  const role = String(req.user?.role || "").toLowerCase();
+  if (role !== "admin" && role !== "editor") {
+    return res.status(403).json({ error: "წვდომა აკრძალულია: საჭიროა რედაქტორის ან ადმინის უფლება" });
   }
   next();
 }

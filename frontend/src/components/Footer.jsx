@@ -1,3 +1,3 @@
 export default function Footer() {
-  return <footer className="footer"><div className="container">© {new Date().getFullYear()} საჯარო სკოლა „განთიადი“</div></footer>;
+  return <footer className="footer"><div className="container">© {new Date().getFullYear()} წალკის N2 საჯარო სკოლა</div></footer>;
 }

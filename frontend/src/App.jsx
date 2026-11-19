@@ -8,6 +8,7 @@ import Register from './pages/Register.jsx';
 import Login from './pages/Login.jsx';
 import Admin from './pages/Admin.jsx';
 import NotFound from './pages/NotFound.jsx';
+import Editor from './pages/Editor.jsx';
 import { useAuth } from './store/authStore.js';
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<ProtectedRoute role="admin"><Admin /></ProtectedRoute>} />
+          <Route path="/editor" element={<ProtectedRoute role="editor"><Editor /></ProtectedRoute>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

@@ -5,11 +5,16 @@ export const useAuth = create((set) => ({
   user: null,
   isAuthenticated: false,
   loading: true, // true, სანამ სესიას არ შევამოწმებთ
+  ready: false,
 
   // აპის გაშვებისას გამოიძახე ერთხელ
   init: async () => {
-    const { data } = await authClient.getSession();
-    set({ user: data?.user ?? null, isAuthenticated: !!data?.user, loading: false });
+    try {
+      const { data } = await authClient.getSession();
+      set({ user: data?.user ?? null, isAuthenticated: !!data?.user, loading: false, ready: true });
+    } catch {
+      set({ user: null, isAuthenticated: false, loading: false, ready: true });
+    }
   },
 
   checkSession: async () => {

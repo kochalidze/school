@@ -27,7 +27,9 @@ export async function createNews(req, res, next) {
 		const newNews = await db.insert(news).values({
 			title,
 			content,
-			image}).returning();
+			image: image || null,
+			authorId: req.user.id,
+		}).returning();
 		res.status(201).json({ news: newNews[0] });
 	}catch (err) {
 		next(err);

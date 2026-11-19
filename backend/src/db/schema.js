@@ -1,4 +1,4 @@
-import { integer, pgTable, varchar, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import { serial, pgTable, varchar, text, timestamp, boolean } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -49,7 +49,7 @@ export const verification = pgTable("verification", {
 });
 
 export const news = pgTable("news", {
-  id: integer("id").primaryKey(),
+  id: serial("id").primaryKey(),
   title: text("title").notNull(),
   content: text("content").notNull(),
   image: text("image"),
